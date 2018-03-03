@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from ocr import process_image, process_image_local
+from execute import execute
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -27,7 +28,7 @@ def upload():
       filename = secure_filename(file.filename)
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
       res = process_image_local('img/' + filename)
-      return jsonify(list(res))
+      return execute(res)
 
 @app.route('/test')
 def test():
