@@ -29,7 +29,13 @@ def upload():
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
       code = process_image_local('img/' + filename)
       res = execute(code)
-      return jsonify(code=code, res=res)
+      return jsonify(code=format_code(code), res=res)
+
+def format_code(code):
+  fcode = ''
+  for line in code:
+    fcode += line + '\n'
+  return fcode
 
 @app.route('/test')
 def test():
