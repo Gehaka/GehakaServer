@@ -126,8 +126,10 @@ def process_image_local(pathToFileInDisk):
     return parse_result(result)
 
 def parse_result(result):
-  for res in result['recognitionResult']['lines']:
-    yield res['text']
+  res = []
+  for r in result['recognitionResult']['lines']:
+    res.append(r['text'])
+  return res
 
 if __name__ == '__main__':
   res = process_image('https://s3.us-east-2.amazonaws.com/hacktech2018/IMG_1043.jpg')
