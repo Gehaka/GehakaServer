@@ -105,7 +105,7 @@ def process_image_local(pathToFileInDisk):
 
   headers = dict()
   headers['Ocp-Apim-Subscription-Key'] = _key
-  headers['Content-Type'] = 'application/json'
+  headers['Content-Type'] = 'application/octet-stream'
 
   json = None
 

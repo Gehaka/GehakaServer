@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from ocr import process_image, process_image_local
@@ -6,7 +7,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
-app.config['UPLOAD_FOLDER'] = 'img'
+app.config['UPLOAD_FOLDER'] = 'img/'
 CORS(app)
 
 @app.route('/')
@@ -21,10 +22,11 @@ def process():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    if request.method == 'POST' and 'photo' in request.files:
+    if request.method == 'POST' and 'file' in request.files:
+      file = request.files['file']
       filename = secure_filename(file.filename)
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-      res = process_image_local(filename)
+      res = process_image_local(app.config['UPLOAD_FOLDER'] + filename)
       return jsonify(list(res))
 
 @app.route('/test')
