@@ -29,17 +29,11 @@ def upload():
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
       code = process_image_local('img/' + filename)
       res = execute(code)
-      return format_output(code, res)
+      return jsonify(code=code, res=res)
 
 @app.route('/test')
 def test():
   return request.args.get('test')
-
-def format_output(code, res):
-  return jsonify({
-      'code': code,
-      'result': res
-    })
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int('80'))
