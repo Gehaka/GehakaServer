@@ -100,7 +100,7 @@ def process_image(urlImage):
 
 def process_image_local(pathToFileInDisk):
   with open(pathToFileInDisk, 'rb') as f:
-  data = f.read()
+    data = f.read()
 
   # Computer Vision parameters
   params = {'handwriting' : 'true'}
