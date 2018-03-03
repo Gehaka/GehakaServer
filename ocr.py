@@ -21,7 +21,7 @@ def processRequest( json, data, headers, params ):
     result = None
 
     while True:
-        response = requests.request( 'post', _url, json = json, data = data, headers = headers, params = params )
+        response = requests.request( 'post', _url, data = data, headers = headers, params = params )
 
         if response.status_code == 429:
             print( "Message: %s" % ( response.json() ) )
@@ -54,7 +54,7 @@ def getOCRTextResult( operationLocation, headers ):
     result = None
 
     while True:
-        response = requests.request('get', operationLocation, json=None, data=None, headers=headers, params=None)
+        response = requests.request('get', operationLocation, data=None, headers=headers, params=None)
         if response.status_code == 429:
             print("Message: %s" % (response.json()))
             if retries <= _maxNumRetries:
@@ -100,7 +100,7 @@ def process_image(urlImage):
 
 def process_image_local(pathToFileInDisk):
   with open(pathToFileInDisk, 'rb') as f:
-  data = f.read()
+    data = f.read()
 
   # Computer Vision parameters
   params = {'handwriting' : 'true'}
@@ -110,7 +110,6 @@ def process_image_local(pathToFileInDisk):
   headers['Content-Type'] = 'application/octet-stream'
 
   json = None
-
   operationLocation = processRequest(json, data, headers, params)
 
   result = None
