@@ -98,6 +98,31 @@ def process_image(urlImage):
   if result is not None and result['status'] == 'Succeeded':
     return parse_result(result)
 
+def process_image_local(pathToFileInDisk):
+  with open(pathToFileInDisk, 'rb') as f:
+    data = f.read()
+  params = { 'handwriting' : 'true'}
+
+  headers = dict()
+  headers['Ocp-Apim-Subscription-Key'] = _key
+  headers['Content-Type'] = 'application/json'
+
+  json = None
+
+  result = None
+  operationLocation = processRequest(json, data, headers, params)
+  if (operationLocation != None):
+    headers = {}
+    headers['Ocp-Apim-Subscription-Key'] = _key
+    while True:
+      time.sleep(1)
+      result = getOCRTextResult(operationLocation, headers)
+      if result['status'] == 'Succeeded' or result['status'] == 'Failed':
+        break
+
+  if result is not None and result['status'] == 'Succeeded':
+    return parse_result(result)
+
 def parse_result(result):
   for res in result['recognitionResult']['lines']:
     yield res['text']
