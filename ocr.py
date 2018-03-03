@@ -100,8 +100,10 @@ def process_image(urlImage):
 
 def process_image_local(pathToFileInDisk):
   with open(pathToFileInDisk, 'rb') as f:
-    data = f.read()
-  params = { 'handwriting' : 'true'}
+  data = f.read()
+
+  # Computer Vision parameters
+  params = {'handwriting' : 'true'}
 
   headers = dict()
   headers['Ocp-Apim-Subscription-Key'] = _key
@@ -109,8 +111,9 @@ def process_image_local(pathToFileInDisk):
 
   json = None
 
-  result = None
   operationLocation = processRequest(json, data, headers, params)
+
+  result = None
   if (operationLocation != None):
     headers = {}
     headers['Ocp-Apim-Subscription-Key'] = _key
