@@ -16,5 +16,9 @@ def process():
   res = process_image(image_url)
   return jsonify(list(res))
 
+@app.route('/test')
+def test():
+  return request.args.get('test')
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=int('80'))
