@@ -6,8 +6,8 @@ def write_file(code):
 
 def execute(code):
   write_file(code)
-  try:
-    out = subprocess.check_output(['python', 'output.py'])
-  except (Exception, SyntaxError) as e:
-    out = e
+try:
+  out = subprocess.check_output(['python', 'output.py'])
+except (Exception, SyntaxError) as e:
+  out = e
   return str(out)
