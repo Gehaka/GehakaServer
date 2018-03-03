@@ -26,7 +26,7 @@ def upload():
       file = request.files['file']
       filename = secure_filename(file.filename)
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-      res = process_image_local(app.config['UPLOAD_FOLDER'] + filename)
+      res = process_image_local('img/' + filename)
       return jsonify(list(res))
 
 @app.route('/test')

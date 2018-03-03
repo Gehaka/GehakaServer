@@ -21,7 +21,7 @@ def processRequest( json, data, headers, params ):
     result = None
 
     while True:
-        response = requests.request( 'post', _url, json = json, data = data, headers = headers, params = params )
+        response = requests.request( 'post', _url, data = data, headers = headers, params = params )
 
         if response.status_code == 429:
             print( "Message: %s" % ( response.json() ) )
@@ -110,7 +110,6 @@ def process_image_local(pathToFileInDisk):
   headers['Content-Type'] = 'application/octet-stream'
 
   json = None
-
   operationLocation = processRequest(json, data, headers, params)
 
   result = None
