@@ -1,5 +1,7 @@
 import time 
 import requests
+import os
+import Image
 
 
 _url = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/RecognizeText'
@@ -98,7 +100,20 @@ def process_image(urlImage):
   if result is not None and result['status'] == 'Succeeded':
     return parse_result(result)
 
+def image_resize(image_file):
+  try:
+    im = Image.open(image_file)
+    width, height = im.size
+    ratio = width / float(height)
+    height_new = 1500
+    width_new = width * ratio
+    im.thumbnail((width_new, height_new), Image.ANTIALIAS)
+    im.save(image_file, "JPEG")
+  except Exception as e:
+    raise
+
 def process_image_local(pathToFileInDisk):
+  image_resize(pathToFileInDisk)
   with open(pathToFileInDisk, 'rb') as f:
     data = f.read()
 
