@@ -31,6 +31,35 @@ def errorCorrection(lines):
       lines[i] = temp
   return lines
 
+def error_correction(lines):
+  tab_prefix = ''
+  for i, line in enumerate(lines):
+    lines[i] = line.lower()
+    if line.startswith('while'):
+      pass
+    elif line.startswith('for'):
+      pass
+    elif line.startswith('if'):
+      pass
+    elif line.startswith('elif'):
+      pass
+    elif line.startswith('else'):
+      pass
+    elif line.startswith('def'):
+      pass
+    elif line.startswith('return'):
+      pass
+    else:
+      pass
+
+def has_operator(line):
+  # recognizes operator sanitizes operands, returns line (else return line)
+  pass
+
+def has_fun_call(line):
+  # recognizes function call sanitizes parameters, returns line (else return line)
+
+
 def main():
   res = errorCorrection(lines)
 
