@@ -104,11 +104,12 @@ def image_resize(image_file):
   try:
     im = Image.open(image_file)
     width, height = im.size
-    ratio = width / float(height)
-    height_new = 1500
-    width_new = width * ratio
-    im.thumbnail((width_new, height_new), Image.ANTIALIAS)
-    im.save(image_file, "JPEG")
+    if width > 3200 or height > 3200:
+      ratio = width / float(height)
+      height_new = 1500
+      width_new = width * ratio
+      im.thumbnail((width_new, height_new), Image.ANTIALIAS)
+      im.save(image_file, "JPEG")
   except Exception as e:
     raise
 
