@@ -36,6 +36,23 @@ def func_for(l):
     temp = "for " + temp[3:index] + " in " + temp[index+2:]
   return temp
 
+def func_if(l):
+  temp = l.replace(" ","")
+  if(temp[-1] != ":"):
+    temp = temp+":"
+  temp = temp + ")"
+  if(temp[3] != '('):
+    line = temp[:3] + "("+temp[5:]
+  return temp
+
+def func_else(l):
+  temp = l.replace(" ","")
+  if(temp[-1] != ":"):
+    temp = temp+":"
+  if(len(temp) > 5):
+    line = "else "+temp[5:]
+  else:
+    return temp
 
 def func_def(l):
   temp = l.replace(" ","")
@@ -76,14 +93,15 @@ def error_correction(lines):
     #while loop
     if a.startswith('while'):
       lines[i] = func_while(lines[i])
+    #for loop
     elif a.startswith('for'):
       lines[i] = func_for(lines[i])
+    #if loop
     elif a.startswith('if'):
-      pass
-    elif a.startswith('elif'):
-      pass
+      lines[i] = func_if(lines[i])
+    #else loop
     elif a.startswith('else'):
-      pass
+      lines[i] = func_else(lines[i])
     #def function
     elif a.startswith('def'):
       lines[i] = func_def(lines[i])
