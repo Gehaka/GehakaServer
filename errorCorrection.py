@@ -20,7 +20,7 @@ def func_while(l):
 
 def func_for(l):
   temp = l.replace(" ","")
-  if(temp.contains("inrange")):
+  if("inrange" in temp):
     index = temp.index("in")
     if(temp[index+7] != '('):
       temp = temp[:index+7] + "(" + temp[index+7:]
@@ -29,7 +29,7 @@ def func_for(l):
     if(temp[-3:-2] != ")"):
       temp = temp[:-2] + "):"
     temp = "for "+temp[3:index-2] + " in range " + temp[index+7:]
-  elif(temp.contains("in")):
+  elif("in" in temp):
     index = temp.index("in")
     if(temp[-1] != ":"):
       temp = temp + ":"
