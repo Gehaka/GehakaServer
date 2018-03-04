@@ -4,7 +4,7 @@ from flask_cors import CORS, cross_origin
 from ocr import process_image, process_image_local
 from execute import execute
 from werkzeug.utils import secure_filename
-from errorCorrection import errorCorrection, error_correction
+from errorCorrection import error_correction
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
