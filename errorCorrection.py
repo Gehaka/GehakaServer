@@ -58,6 +58,7 @@ def has_operator(line):
 
 def has_fun_call(line):
   # recognizes function call sanitizes parameters, returns line (else return line)
+  pass
 
 
 def main():
