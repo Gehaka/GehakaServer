@@ -37,7 +37,7 @@ def func_while(l):
   elif(temp[5] != "(" and temp[-2:-1] != ")"):
     if(temp[-1:] != ":"):
       line = line + ":"
-  return true
+  return line
 
 def func_def(l):
   temp = l.replace(" ","")
