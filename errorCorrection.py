@@ -39,40 +39,41 @@ def func_for(l):
 def func_if(l):
   temp = l.replace(" ","")
   if(temp[-2:] != "):"):
-    if(temp[-1] == ":" and temp[-2] != ")"):
+    if(temp[-1] == ":" and temp[-2] != ")")
       temp = temp[:-1] + "):"
   elif(temp[-1] != ":" and temp[-2] == ")"):
     temp = temp+":"
   else:
     temp = temp + "):"
-  if(temp[3] != '('):
-    temp = temp[:3] + "("+temp[3:]
+  if(l.startswith("if")):
+    if(temp[2] != '('):
+      temp = temp[:3] + "("+temp[3:]
+  elif(l.startswith("elif")):
+    if(temp[4] != '('):
+      temp = temp[:4] + "("+temp[4:]
   return temp
 
 def func_else(l):
   temp = l.replace(" ","")
   if(temp[-1] != ":"):
     temp = temp+":"
-  if(len(temp) > 5):
-    line = "else "+temp[5:]
-  else:
-    return temp
+  return temp
 
 def func_def(l):
   temp = l.replace(" ","")
   if(temp[0:3] == "def"):
     line = l[0:3]+" "+temp[3:]
-  if(l[-3:-1] != "()"):
-    line = line + "()"
-  if(l[-1:] != ":"):
-    line = line + ":"
-  if(l[-1:] == "("):
-    line = line + "):"
+  if(temp[-1] != ":"):
+    if(temp[-1] != ")"):
+      line = line + "):"
+    elif(temp[-1] == ")"):
+      line = line + ":"
   return line
 
 def func_return(l):
   temp = l.replace(" ","")
   line = temp[0:6]+" "+temp[6:]
+  line = "  "+line
   return line
 
 def func_print(l):
@@ -95,18 +96,34 @@ def error_correction(lines):
   for i in range(len(lines)):
     lines[i] = lines[i].lower()
     a = lines[i].replace(" ","")
+    tab_space = "  "
     #while loop
     if a.startswith('while'):
       lines[i] = func_while(lines[i])
+      if(lines[0].startswith("def")):
+        lines[i] = "  "+lines[i]
     #for loop
     elif a.startswith('for'):
       lines[i] = func_for(lines[i])
-    #if loop
+      if(lines[0].startswith("def")):
+        lines[i] = "  "+lines[i]
+    #if function
     elif a.startswith('if'):
       lines[i] = func_if(lines[i])
-    #else loop
+      if(lines[0].startswith("def")):
+        lines[i] = "  "+lines[i]
+    #elif function
+    elif a.startswith('elif'):
+      lines[i] = func_if(lines[i])
+      tab_prefix -= 1
+      if(lines[0].startswith("def")):
+        lines[i] = "  "+lines[i]
+    #else function
     elif a.startswith('else'):
       lines[i] = func_else(lines[i])
+      tab_prefix -= 1
+      if(lines[0].startswith("def")):
+        lines[i] = "  "+lines[i]
     #def function
     elif a.startswith('def'):
       lines[i] = func_def(lines[i])
@@ -122,10 +139,10 @@ def error_correction(lines):
         index = lines[i-1].index(" ")
         if(lines[i-1][:index] in keyword_terms):
           tab_prefix += 1
-        tab=0
-        while(tab < tab_prefix):
-          lines[i] = "  "+lines[i]
-          tab += 1
+      tab=0
+      while(tab < tab_prefix):
+        lines[i] = "  "+lines[i]
+        tab += 1
   return lines
 
 def has_operator(line):
