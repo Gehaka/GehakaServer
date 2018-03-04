@@ -79,13 +79,14 @@ def func_print(l):
   temp = l.replace(" ","")
   word = temp[0:5]
   line = word + " " + temp[5:]
-  if(line[6:].isalnum()):
-    return line
-  elif(line[6] == "\""):
-    if(line[-1] == "\'"):
-      line = line[:-1] + "\""
-    if(line[-1] != "\"" ):
-      line = line + "\""
+  if(len(line) > 5):
+    if(line[6:].isalnum()):
+      return line
+    elif(line[6] == "\""):
+      if(line[-1] == "\'"):
+        line = line[:-1] + "\""
+      if(line[-1] != "\"" ):
+        line = line + "\""
   return line
 
 def error_correction(lines):
