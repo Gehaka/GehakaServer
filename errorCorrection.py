@@ -1,27 +1,6 @@
 import keyword
 import re
 
-# def errorCorrection(lines):
-#   keyWordList = keyword.kwlist
-#   operators = ['=','==','+','-','*','/','%','**','//','!=','<>','>','<','>=','<=']
-#   for i in range(len(lines)):
-#     lines[i] = re.sub(' +',' ',lines[i])
-#   #Assignment Operator
-#   if("=" in lines[i]):
-#     continue
-#   else:
-#     #Print Statement
-#     if("\"" not in lines[i]):
-#       continue
-#     if(temp[0:5] != "print"):
-#       temp = temp[0:5].replace(temp[0:5],"print")
-#     if(temp[len(temp)-1] == "\"" and temp[5] != "\""):
-#       temp = temp[:5]+"\""+temp[5:]
-#     if(temp[len(temp)-1] != "\"" and temp[5] == "\""):
-#       temp = temp+"\""
-#       lines[i] = temp
-#   return lines
-
 def func_while(l):
   temp = l.replace(" ","")
   line = temp[0:5]+" "+temp[5:]
@@ -37,7 +16,7 @@ def func_while(l):
   elif(temp[5] != "(" and temp[-2:-1] != ")"):
     if(temp[-1:] != ":"):
       line = line + ":"
-  return line
+  return true
 
 def func_def(l):
   temp = l.replace(" ","")
@@ -54,6 +33,15 @@ def func_def(l):
 def func_return(l):
   temp = l.replace(" ","")
   line = temp[0:6]+" "+temp[6:]
+  return line
+
+def func_print(l):
+  temp = l.replace(" ","")
+  line = temp[0:5]+" "+temp[5:]
+  if(line[6:].isalnum()):
+    return line
+  elif(line[6] == "\"" and line[-1] != "\"" ):
+    line = line + "\""
   return line
 
 def error_correction(lines):
@@ -80,6 +68,8 @@ def error_correction(lines):
     elif a.startswith('return'):
       tab_prefix = 0
       lines[i] = func_return(lines[i])
+    elif a.startswith("print"):
+      lines[i] = def_print(lines[i])
     elif(i != 0):
       if(" " in lines[i-1]):
         index = lines[i-1].index(" ")
