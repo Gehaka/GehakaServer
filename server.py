@@ -4,7 +4,7 @@ from flask_cors import CORS, cross_origin
 from ocr import process_image, process_image_local
 from execute import execute
 from werkzeug.utils import secure_filename
-from errorCorrection import errorCorrection
+from errorCorrection import errorCorrection, error_correction
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -29,7 +29,7 @@ def upload():
       filename = secure_filename(file.filename)
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
       code = process_image_local('img/' + filename)
-      # processed_code = errorCorrection(code)
+      code = error_correction(code)
       res = execute(code)
       return jsonify(code=format_code(code), res=res)
 
