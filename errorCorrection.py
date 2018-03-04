@@ -60,35 +60,35 @@ def error_correction(lines):
   tab_prefix = 0
   keyword_terms = ["for","while","if","else",]
   for i in range(len(lines)):
-  lines[i] = lines[i].lower()
-  a = lines[i].replace(" ","")
-  #while loop
-  if a.startswith('while'):
-    lines[i] = func_while(lines[i])
-  elif a.startswith('for'):
-    pass
-  elif a.startswith('if'):
-    pass
-  elif a.startswith('elif'):
-    pass
-  elif a.startswith('else'):
-    pass
-  #def function
-  elif a.startswith('def'):
-    lines[i] = func_def(lines[i])
-  #def return function
-  elif a.startswith('return'):
-    tab_prefix = 0
-    lines[i] = func_return(lines[i])
-  elif(i != 0):
-    if(" " in lines[i-1]):
-      index = lines[i-1].index(" ")
-      if(lines[i-1][:index] in keyword_terms):
-        tab_prefix += 1
-      tab=0
-      while(tab < tab_prefix):
-        lines[i] = "  "+lines[i]
-        tab += 1
+    lines[i] = lines[i].lower()
+    a = lines[i].replace(" ","")
+    #while loop
+    if a.startswith('while'):
+      lines[i] = func_while(lines[i])
+    elif a.startswith('for'):
+      pass
+    elif a.startswith('if'):
+      pass
+    elif a.startswith('elif'):
+      pass
+    elif a.startswith('else'):
+      pass
+    #def function
+    elif a.startswith('def'):
+      lines[i] = func_def(lines[i])
+    #def return function
+    elif a.startswith('return'):
+      tab_prefix = 0
+      lines[i] = func_return(lines[i])
+    elif(i != 0):
+      if(" " in lines[i-1]):
+        index = lines[i-1].index(" ")
+        if(lines[i-1][:index] in keyword_terms):
+          tab_prefix += 1
+        tab=0
+        while(tab < tab_prefix):
+          lines[i] = "  "+lines[i]
+          tab += 1
   return lines
 
 def has_operator(line):
