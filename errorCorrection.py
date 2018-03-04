@@ -39,7 +39,7 @@ def func_for(l):
 def func_if(l):
   temp = l.replace(" ","")
   if(temp[-2:] != "):"):
-    if(temp[-1] == ":" and temp[-2] != ")")
+    if(temp[-1] == ":" and temp[-2] != ")"):
       temp = temp[:-1] + "):"
   elif(temp[-1] != ":" and temp[-2] == ")"):
     temp = temp+":"
