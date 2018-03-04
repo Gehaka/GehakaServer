@@ -18,6 +18,25 @@ def func_while(l):
       line = line + ":"
   return line
 
+def func_for(l):
+  temp = l.replace(" ","")
+  if(temp.contains("inrange")):
+    index = temp.index("in")
+    if(temp[index+7] != '('):
+      temp = temp[:index+7] + "(" + temp[index+7:]
+    if(temp[-1] != ":"):
+      temp = temp + ":"
+    if(temp[-3:-2] != ")"):
+      temp = temp[:-2] + "):"
+    temp = "for "+temp[3:index-2] + " in range " + temp[index+7:]
+  elif(temp.contains("in")):
+    index = temp.index("in")
+    if(temp[-1] != ":"):
+      temp = temp + ":"
+    temp = "for " + temp[3:index] + " in " + temp[index+2:]
+    return temp
+
+
 def func_def(l):
   temp = l.replace(" ","")
   if(temp[0:3] == "def"):
@@ -58,7 +77,7 @@ def error_correction(lines):
     if a.startswith('while'):
       lines[i] = func_while(lines[i])
     elif a.startswith('for'):
-      pass
+      lines[i] = func_for(lines[i])
     elif a.startswith('if'):
       pass
     elif a.startswith('elif'):
