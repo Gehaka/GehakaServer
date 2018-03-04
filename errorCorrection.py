@@ -40,9 +40,10 @@ def func_if(l):
   temp = l.replace(" ","")
   if(temp[-1] != ":"):
     temp = temp+":"
-  temp = temp + ")"
+  if(temp[-2] != ')')
+  temp = temp + "):"
   if(temp[3] != '('):
-    line = temp[:3] + "("+temp[5:]
+    line = temp[:3] + "("+temp[4:]
   return temp
 
 def func_else(l):
