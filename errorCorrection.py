@@ -41,7 +41,7 @@ def func_if(l):
   if(temp[-1] != ":"):
     temp = temp+":"
   if(temp[-2] != ')')
-  temp = temp + "):"
+    temp = temp + "):"
   if(temp[3] != '('):
     line = temp[:3] + "("+temp[4:]
   return temp
