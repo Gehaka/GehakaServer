@@ -37,7 +37,7 @@ def upload():
 def edit():
   code = request.data
   res = execute(code)
-  return jsonify(code=format_code(code), res=res)
+  return jsonify(code=code, res=res)
 
 @app.route('/test')
 def test():
