@@ -51,7 +51,7 @@ def error_correction(lines):
       pass
     else:
       pass
-    return lines
+  return lines
 
 def has_operator(line):
   # recognizes operator sanitizes operands, returns line (else return line)
