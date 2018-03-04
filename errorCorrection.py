@@ -28,13 +28,13 @@ def func_for(l):
       temp = temp + ":"
     if(temp[-3:-2] != ")"):
       temp = temp[:-2] + "):"
-    temp = "for "+temp[3:index-2] + " in range " + temp[index+7:]
+    temp = "for "+temp[3:index-1] + " in range " + temp[index+7:]
   elif("in" in temp):
     index = temp.index("in")
     if(temp[-1] != ":"):
       temp = temp + ":"
     temp = "for " + temp[3:index] + " in " + temp[index+2:]
-    return temp
+  return temp
 
 
 def func_def(l):
