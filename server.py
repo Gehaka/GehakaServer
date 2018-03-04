@@ -29,19 +29,25 @@ def upload():
       filename = secure_filename(file.filename)
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
       code = process_image_local('img/' + filename)
-      processed_code = errorCorrection(code)
+      # processed_code = errorCorrection(code)
       res = execute(code)
       return jsonify(code=format_code(code), res=res)
+
+@app.route('/edit', methods=['GET', 'POST'])
+def edit():
+  code = request.json['code']
+  res = execute(code)
+  return jsonify(code=format_code(code), res=res)
+
+@app.route('/test')
+def test():
+  return request.args.get('test')
 
 def format_code(code):
   fcode = ''
   for line in code:
     fcode += line + '\n'
   return fcode
-
-@app.route('/test')
-def test():
-  return request.args.get('test')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int('80'))
