@@ -128,7 +128,10 @@ def process_image_local(pathToFileInDisk):
 def parse_result(result):
   res = []
   for r in result['recognitionResult']['lines']:
-    res.append(r['text'])
+    if 'text' in r:
+      res.append(r['text'])
+    else:
+      break
   return res
 
 if __name__ == '__main__':
