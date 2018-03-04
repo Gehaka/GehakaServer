@@ -34,7 +34,7 @@ def func_while(l):
     line = line[:5]+"("+line[5:]
     if(line[-1:] != ":"):
       line = line + ":"
-  elif(temp[5] != "(" and and temp[-2:-1] != ")"):
+  elif(temp[5] != "(" and temp[-2:-1] != ")"):
     if(temp[-1:] != ":"):
       line = line + ":"
   return true
