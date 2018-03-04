@@ -107,7 +107,7 @@ def image_resize(image_file):
     ratio = width / float(height)
     height_new = 1500
     width_new = width * ratio
-    im.thumbnail((height_new, width_new), Image.ANTIALIAS)
+    im.thumbnail((width_new, height_new), Image.ANTIALIAS)
     im.save(image_file, "JPEG")
   except Exception as e:
     raise
