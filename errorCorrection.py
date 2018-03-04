@@ -35,8 +35,8 @@ def func_return(l):
   line = temp[0:6]+" "+temp[6:]
   return line
 
-def func_print(l):
-  temp = l.replace(" ","")
+def func_print(line):
+  temp = line.replace(" ","")
   word = temp[0:5]
 
   if(line[6:].isalnum()):
