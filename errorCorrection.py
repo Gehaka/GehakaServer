@@ -5,7 +5,7 @@ def errorCorrection(lines):
   keyWordList = keyword.kwlist
   operators = ['=','==','+','-','*','/','%','**','//','!=','<>','>','<','>=','<=']
   for i in range(len(lines)):
-  lines[i] = re.sub(' +',' ',lines[i])
+    lines[i] = re.sub(' +',' ',lines[i])
   #Assignment Operator
   if("=" in lines[i]):
     continue
