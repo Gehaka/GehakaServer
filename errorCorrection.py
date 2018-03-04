@@ -60,12 +60,11 @@ def func_else(l):
   return temp
 
 def func_def(l):
-  temp = l.replace(" ","")
-  if(temp[0:3] == "def"):
-    line = l[0:3]+" "+temp[3:]
-    first_space = l.find(" ",5)
+  first_space = l.find(" ",4)
   if(l[first_space+1] != '('):
-    line = line[:first_space] + "(" + line[first_space+1:]
+    l.replace(" ","(",1)
+  if(temp[0:3] == "def"):
+    line = "def "+temp[3:]
   if(temp[-1] != ":"):
     if(temp[-1] != ")"):
       line = line + "):"
