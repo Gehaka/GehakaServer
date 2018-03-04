@@ -73,9 +73,9 @@ def error_correction(lines):
       tab_prefix = 0
       lines[i] = func_return(lines[i])
     #print function
-    elif a.startswith("print"):
-      lines[i] = func_print(lines[i])
     elif(i != 0):
+      if(a.startswith("print")):
+        lines[i] = func_print(lines[i])
       if(" " in lines[i-1]):
         index = lines[i-1].index(" ")
         if(lines[i-1][:index] in keyword_terms):
