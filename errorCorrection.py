@@ -63,7 +63,7 @@ def func_def(l):
   temp = l.replace(" ","")
   if(temp[0:3] == "def"):
     line = l[0:3]+" "+temp[3:]
-    first_space = line.find(" ",5)
+    first_space = l.find(" ",5)
   if(line[first_space+1] != '('):
     line = line[:first_space] + "(" + line[first_space+1:]
   if(temp[-1] != ":"):
