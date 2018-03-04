@@ -37,11 +37,15 @@ def func_return(l):
 
 def func_print(l):
   temp = l.replace(" ","")
-  line = temp[0:5]+" "+temp[5:]
+  word = temp[0:5]
+
   if(line[6:].isalnum()):
     return line
-  elif(line[6] == "\"" and line[-1] != "\"" ):
-    line = line + "\""
+  elif(line[6] == "\""):
+    if(line[-1] == "\'"):
+      line[-1] = "\""
+    if(line[-1] != "\"" ):
+      line = line + "\""
   return line
 
 def error_correction(lines):
@@ -68,8 +72,9 @@ def error_correction(lines):
     elif a.startswith('return'):
       tab_prefix = 0
       lines[i] = func_return(lines[i])
+    #print function
     elif a.startswith("print"):
-      lines[i] = func_print(lines[i])
+      lines[i] = def_print(lines[i])
     elif(i != 0):
       if(" " in lines[i-1]):
         index = lines[i-1].index(" ")
