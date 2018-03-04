@@ -8,7 +8,7 @@ def errorCorrection(lines):
         lines[i] = re.sub(' +',' ',lines[i])
         #Assignment Operator
         if("=" in lines[i]):
-            lines[i] = lines[i]
+            continue
         else:
             temp = lines[i].replace(" ","")
             #def function
