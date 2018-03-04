@@ -43,7 +43,7 @@ def func_print(line):
     return line
   elif(line[6] == "\""):
     if(line[-1] == "\'"):
-      line[-1] = "\""
+      line = line[:-1] + "\""
     if(line[-1] != "\"" ):
       line = line + "\""
   return line
