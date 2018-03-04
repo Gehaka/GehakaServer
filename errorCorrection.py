@@ -47,7 +47,7 @@ def func_def(l):
     line = line + "()"
   if(l[-1:] != ":"):
     line = line + ":"
-  if(l[-1:] != "("):
+  if(l[-1:] == "("):
     line = line + "):"
   return line
 
@@ -58,7 +58,7 @@ def func_return(l):
 
 def error_correction(lines):
   tab_prefix = 0
-  keyword_terms = ["for","while","if","else",]
+  keyword_terms = ["for","while","if","else","def"]
   for i in range(len(lines)):
     lines[i] = lines[i].lower()
     a = lines[i].replace(" ","")
