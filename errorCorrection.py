@@ -55,7 +55,7 @@ def func_return(l):
   return line
 
 def func_print(l):
-  temp = line.replace(" ","")
+  temp = l.replace(" ","")
   word = temp[0:5]
   line = word + " " + temp[5:]
   if(line[6:].isalnum()):
