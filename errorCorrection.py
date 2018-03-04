@@ -47,7 +47,7 @@ def func_if(l):
     temp = temp + "):"
   if(l.startswith("if")):
     if(temp[2] != '('):
-      temp = temp[:3] + "("+temp[3:]
+      temp = temp[:2] + "("+temp[2:]
   elif(l.startswith("elif")):
     if(temp[4] != '('):
       temp = temp[:4] + "("+temp[4:]
@@ -63,6 +63,9 @@ def func_def(l):
   temp = l.replace(" ","")
   if(temp[0:3] == "def"):
     line = l[0:3]+" "+temp[3:]
+    first_space = line.index(" ",5)
+  if(line[first_space+1] != '('):
+    line = line[:first_space] + "(" + line[first_space+1:]
   if(temp[-1] != ":"):
     if(temp[-1] != ")"):
       line = line + "):"
@@ -144,3 +147,11 @@ def error_correction(lines):
         lines[i] = "  "+lines[i]
         tab += 1
   return lines
+
+def has_operator(line):
+  # recognizes operator sanitizes operands, returns line (else return line)
+  pass
+
+def has_fun_call(line):
+  # recognizes function call sanitizes parameters, returns line (else return line)
+  pass
